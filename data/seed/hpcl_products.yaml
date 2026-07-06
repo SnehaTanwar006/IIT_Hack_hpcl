@@ -1,0 +1,43 @@
+products:
+  - code: MS
+    name: Motor Spirit
+    family: Industrial Fuels
+  - code: HSD
+    name: High-Speed Diesel
+    family: Industrial Fuels
+  - code: LDO
+    name: Light Diesel Oil
+    family: Industrial Fuels
+  - code: FO
+    name: Furnace Oil
+    family: Industrial Fuels
+  - code: LSHS
+    name: Low Sulphur Heavy Stock
+    family: Industrial Fuels
+  - code: SKO
+    name: Superior Kerosene Oil Non-PDS
+    family: Industrial Fuels
+  - code: HEXANE
+    name: Hexane
+    family: Specialty Products
+  - code: SOLVENT_1425
+    name: Solvent 1425
+    family: Specialty Products
+  - code: MTO
+    name: Mineral Turpentine Oil
+    family: Specialty Products
+  - code: JBO
+    name: Jute Batch Oil
+    family: Specialty Products
+  - code: BITUMEN
+    name: Bitumen
+    family: Bulk Products
+  - code: MARINE_BUNKERS
+    name: Marine Bunker Fuels
+    family: Bulk Products
+  - code: SULPHUR
+    name: Sulphur
+    family: Bulk Products
+  - code: PROPYLENE
+    name: Propylene
+    family: Bulk Products

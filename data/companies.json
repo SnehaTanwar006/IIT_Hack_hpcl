@@ -1,0 +1,85 @@
+{
+  "ENT_000001": {
+    "entity_id": "ENT_000001",
+    "canonical_name": "Tata Steel Limited",
+    "aliases": [
+      "Tata Steel Limited",
+      "tata steel",
+      "ts"
+    ],
+    "cin": null,
+    "gstin": [],
+    "website": null,
+    "industry": "Steel",
+    "locations": [
+      "Jamshedpur, Jharkhand"
+    ],
+    "created_at": "2026-02-07T21:00:00Z"
+  },
+  "ENT_000002": {
+    "entity_id": "ENT_000002",
+    "canonical_name": "NHAI",
+    "aliases": [
+      "NHAI",
+      "nhai"
+    ],
+    "cin": null,
+    "gstin": [],
+    "website": null,
+    "industry": "Construction",
+    "locations": [
+      "Vadodara, Gujarat"
+    ],
+    "created_at": "2026-02-07T21:00:00Z"
+  },
+  "ENT_000003": {
+    "entity_id": "ENT_000003",
+    "canonical_name": "NTPC Limited",
+    "aliases": [
+      "NTPC Limited",
+      "ntpc"
+    ],
+    "cin": null,
+    "gstin": [],
+    "website": null,
+    "industry": null,
+    "locations": [
+      "Jamshedpur"
+    ],
+    "created_at": "2026-02-07T21:00:00Z"
+  },
+  "ENT_000004": {
+    "entity_id": "ENT_000004",
+    "canonical_name": "Bengal Jute Mills",
+    "aliases": [
+      "Bengal Jute Mills",
+      "bengal jute mills",
+      "bjm"
+    ],
+    "cin": null,
+    "gstin": [],
+    "website": null,
+    "industry": null,
+    "locations": [
+      "Kolkata"
+    ],
+    "created_at": "2026-02-07T21:00:00Z"
+  },
+  "ENT_000005": {
+    "entity_id": "ENT_000005",
+    "canonical_name": "Shipping Corporation of India",
+    "aliases": [
+      "Shipping Corporation of India",
+      "shipping of india",
+      "soi"
+    ],
+    "cin": null,
+    "gstin": [],
+    "website": null,
+    "industry": null,
+    "locations": [
+      "Mumbai"
+    ],
+    "created_at": "2026-02-07T21:00:00Z"
+  }
+}

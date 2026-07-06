@@ -1,0 +1,12 @@
+# Core dependencies
+loguru==0.7.2
+python-dateutil==2.8.2
+
+# Web scraping (policy-safe)
+feedparser==6.0.11
+requests==2.31.0
+urllib3==2.1.0
+
+# Entity matching
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.25.0

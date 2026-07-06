@@ -1,0 +1,58 @@
+{
+  "economictimes.indiatimes.com": {
+    "domain": "economictimes.indiatimes.com",
+    "category": "news",
+    "access_method": "RSS",
+    "rss_url": "https://economictimes.indiatimes.com/rssfeedstopstories.cms",
+    "allowed_crawl_frequency": "hourly",
+    "rate_limit_requests_per_hour": 100,
+    "trust_score": 0.95,
+    "robots_txt_compliant": true,
+    "tos_reviewed": "2026-01-15",
+    "tos_allows_scraping": true,
+    "last_crawl": null,
+    "status": "active"
+  },
+  "gem.gov.in": {
+    "domain": "gem.gov.in",
+    "category": "tender",
+    "access_method": "API",
+    "api_endpoint": "https://gem.gov.in/api/tenders",
+    "allowed_crawl_frequency": "daily",
+    "rate_limit_requests_per_hour": 50,
+    "trust_score": 1.0,
+    "robots_txt_compliant": true,
+    "tos_reviewed": "2026-01-15",
+    "tos_allows_scraping": true,
+    "last_crawl": null,
+    "status": "active"
+  },
+  "business-standard.com": {
+    "domain": "business-standard.com",
+    "category": "news",
+    "access_method": "RSS",
+    "rss_url": "https://www.business-standard.com/rss/home_page_top_stories.rss",
+    "allowed_crawl_frequency": "hourly",
+    "rate_limit_requests_per_hour": 100,
+    "trust_score": 0.9,
+    "robots_txt_compliant": true,
+    "tos_reviewed": "2026-01-15",
+    "tos_allows_scraping": true,
+    "last_crawl": null,
+    "status": "active"
+  },
+  "moneycontrol.com": {
+    "domain": "moneycontrol.com",
+    "category": "news",
+    "access_method": "RSS",
+    "rss_url": "https://www.moneycontrol.com/rss/latestnews.xml",
+    "allowed_crawl_frequency": "hourly",
+    "rate_limit_requests_per_hour": 100,
+    "trust_score": 0.88,
+    "robots_txt_compliant": true,
+    "tos_reviewed": "2026-01-15",
+    "tos_allows_scraping": true,
+    "last_crawl": null,
+    "status": "active"
+  }
+}

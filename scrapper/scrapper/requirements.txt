@@ -1,0 +1,25 @@
+# Core scraping and parsing
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# Data processing
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# RSS feeds
+feedparser>=6.0.10
+
+# URL parsing and utilities
+urllib3>=2.0.0
+
+# Additional utilities
+python-dateutil>=2.8.0
+
+# Optional but recommended
+# For database support (if needed later)
+# sqlalchemy>=2.0.0
+# psycopg2-binary>=2.9.0
+
+# For environment variables (if needed)
+# python-dotenv>=1.0.0

@@ -1,0 +1,25 @@
+sources:
+  - domain: demo.example.com
+    category: demo
+    access_method: seed_dataset
+    allowed_crawl_frequency: none
+    trust_score: 0.80
+    policy_note: Synthetic recruiter demo data.
+  - domain: gem.gov.in
+    category: tender
+    access_method: official_portal_or_api_when_allowed
+    allowed_crawl_frequency: daily
+    trust_score: 0.98
+    policy_note: Respect robots.txt, ToS, rate limits, and public data boundaries.
+  - domain: eprocure.gov.in
+    category: tender
+    access_method: official_portal_or_api_when_allowed
+    allowed_crawl_frequency: daily
+    trust_score: 0.98
+    policy_note: Prefer official data exports/APIs where available.
+  - domain: news_rss
+    category: news
+    access_method: rss
+    allowed_crawl_frequency: hourly
+    trust_score: 0.88
+    policy_note: Use RSS feeds and retain source URL/timestamp.
