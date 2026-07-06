@@ -5,7 +5,7 @@ from __future__ import annotations
 import csv
 import sys
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -97,7 +97,7 @@ class LeadIntelligencePipeline:
             "provenance": {
                 "source_url": signal.source_url,
                 "source_name": signal.source_name,
-                "extracted_at": datetime.utcnow().isoformat() + "Z",
+                "extracted_at": _utc_timestamp(),
                 "trust_score": self._trust_score(signal.source_type),
                 "legal_basis": "publicly_available_demo_data",
                 "policy_note": "Demo seed data. Production ingestion must honor robots.txt, ToS, and rate limits.",
@@ -115,7 +115,7 @@ class LeadIntelligencePipeline:
                 "expected_products": signal.expected_products,
                 "expected_priority": signal.expected_priority,
             },
-            "created_at": datetime.utcnow().isoformat() + "Z",
+            "created_at": _utc_timestamp(),
         }
 
     def run_demo(self, signals: list[DemoSignal], limit: int | None = None) -> list[dict[str, Any]]:
@@ -166,10 +166,10 @@ class LeadRepository:
         lead = self._leads[lead_id]
         lead["status"] = status
         lead["feedback"]["status"] = status
-        lead["feedback"]["updated_at"] = datetime.utcnow().isoformat() + "Z"
+        lead["feedback"]["updated_at"] = _utc_timestamp()
         if note:
             lead["feedback"]["notes"].append(
-                {"note": note, "created_at": datetime.utcnow().isoformat() + "Z"}
+                {"note": note, "created_at": _utc_timestamp()}
             )
         return lead
 
@@ -267,3 +267,7 @@ def _count_by(leads: list[dict[str, Any]], key_fn) -> dict[str, int]:
         key = str(key_fn(lead))
         counts[key] = counts.get(key, 0) + 1
     return dict(sorted(counts.items()))
+
+
+def _utc_timestamp() -> str:
+    return datetime.now(UTC).isoformat().replace("+00:00", "Z")
