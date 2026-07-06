@@ -4,43 +4,57 @@
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-PWA%20Dashboard-61DAFB?logo=react&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Recruiter%20Ready-2F9D68)
+![React](https://img.shields.io/badge/React-Dashboard-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-Frontend-3178C6?logo=typescript&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Prototype%20%2B%20Portfolio%20Ready-2F9D68)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-## Why This Project Exists
+## Overview
 
-HPCL's Direct Sales and Bulk Fuels business serves industrial customers across power, steel, chemicals, fertilizers, shipping, mining, infrastructure, manufacturing, and allied sectors. The business problem is early discovery: finding companies that are expanding, tendering, procuring, or setting up new capacity before a sales opportunity goes cold.
+HPCL's Direct Sales and Bulk Fuels business serves industrial customers across sectors such as power, steel, chemicals, fertilizers, shipping, mining, construction, infrastructure, and manufacturing. In B2B industrial sales, the hard part is often early discovery: identifying companies that are expanding, tendering, procuring, or setting up new capacity before the opportunity becomes stale.
 
-This project turns public web signals into structured lead dossiers for sales teams. It started as a 24-hour IIT Roorkee Productathon hackathon prototype and has been refactored into a professional, recruiter-friendly product repository.
+This project solves that discovery problem by transforming public B2B signals into structured sales leads. It ingests/demo-processes tender-like updates, news-style expansion signals, and company-page signals, then produces a lead dossier with product fit, confidence, urgency, routing, and next-best-action.
 
-## What It Does
+The project began during an IIT Roorkee hackathon/Productathon and has been shaped as a recruiter-friendly full-stack prototype.
 
-- Discovers B2B lead signals from demo tenders, news/RSS-style updates, company pages, and source registry entries.
-- Resolves company identity and builds a target company card.
-- Infers likely HPCL Direct Sales product needs.
-- Scores each lead using intent, freshness, company size proxy, and geography.
-- Routes leads to synthetic regional sales officers.
-- Generates explainable lead dossiers with provenance, reason codes, confidence, and next-best-action.
-- Previews sandbox WhatsApp/email/Teams-style notifications.
-- Captures feedback states: `NEW`, `ACCEPTED`, `REJECTED`, and `CONVERTED`.
-- Presents a React dashboard for lead queue review, dossier inspection, and executive metrics.
+## Problem Statement
 
-## Product Families Covered
+Build a B2B Lead Intelligence Agent for HPCL Direct Sales that can:
 
-The inference engine supports the HPCL Direct Sales families described in the problem statement:
+- Monitor public web signals such as tenders, news, company websites, directories, and permitted datasets.
+- Identify new customers and expansion/cross-sell opportunities.
+- Infer likely HPCL product requirements from industrial context.
+- Generate explainable lead dossiers for sales officers.
+- Score, prioritize, and route leads by territory.
+- Trigger sandbox notifications and capture lead feedback.
+- Support executive analytics and a mobile/PWA-style workflow.
 
-| Family | Products |
+## Key Features
+
+- **Source intelligence:** Uses source registry concepts and demo signals to represent public tender/news/company-page inputs.
+- **Entity resolution:** Normalizes company identities and creates target company cards.
+- **Product inference:** Maps signal text to HPCL Direct Sales product families using keywords, strong indicators, quantities, and operational cues.
+- **Lead scoring:** Scores intent, freshness, company size proxy, and geographic proximity.
+- **Territory routing:** Assigns leads to regional demo sales officers.
+- **Lead dossier API:** Exposes lead details, score breakdowns, product recommendations, provenance, and next-best-action.
+- **Feedback loop:** Supports `NEW`, `ACCEPTED`, `REJECTED`, and `CONVERTED` lead states.
+- **Notification preview:** Generates sandbox WhatsApp/email/Teams-style alert payloads without contacting external services.
+- **Executive dashboard:** React dashboard for lead queue review, dossier inspection, filtering, and pipeline metrics.
+- **Demo dataset:** Includes 250 deterministic synthetic labelled signals for repeatable demonstrations.
+
+## HPCL Product Families Covered
+
+| Category | Products |
 | --- | --- |
 | Industrial Fuels | MS, HSD, LDO, FO, LSHS, SKO |
 | Specialty Products | Hexane, Solvent 1425, Mineral Turpentine Oil, Jute Batch Oil |
-| Bulk / Other DS Products | Bitumen, Marine Bunker Fuels, Sulphur, Propylene |
+| Bulk / Other DS Portfolio | Bitumen, Marine Bunker Fuels, Sulphur, Propylene |
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  A["Public Signals: tenders, RSS/news, company pages"] --> B["Source Governance"]
+  A["Public B2B Signals"] --> B["Source Governance"]
   B --> C["Signal Normalization"]
   C --> D["Entity Resolution"]
   D --> E["Product Inference"]
@@ -55,54 +69,105 @@ flowchart LR
 
 ## Tech Stack
 
-| Layer | Tools |
+| Layer | Technology |
 | --- | --- |
 | Backend API | FastAPI, Pydantic |
-| Intelligence Core | Python heuristics for entity resolution, product inference, scoring, routing |
+| Intelligence Layer | Python heuristic modules for inference, scoring, routing, entity resolution |
 | Frontend | React, TypeScript, Vite, lucide-react |
-| Dataset | 250 deterministic synthetic labelled signals |
+| Data | CSV/YAML/JSON seed data |
 | Testing | pytest |
-| DevOps | Docker Compose, GitHub Actions |
+| Deployment Scaffold | Docker Compose |
 
 ## Repository Structure
 
 ```text
-backend/
-  app/
-    main.py                  # FastAPI entrypoint
-    core/pipeline.py         # Dossier generation, analytics, feedback, notification preview
-  tests/                     # Backend behavior tests
-frontend/
-  src/                       # React dashboard
-data/
-  seed/                      # Synthetic labelled data and source/product registries
-docs/                        # Architecture, model card, governance, deployment, demo script
-scripts/
-  seed_demo_data.py          # Regenerates 250-row demo dataset
-src/                         # Preserved and refactored hackathon intelligence modules
-scrapper/                    # Legacy scraper prototype retained for reference
-integration/                 # Legacy integration prototype
+.
+├── backend/
+│   ├── app/
+│   │   ├── main.py              # FastAPI routes
+│   │   └── core/pipeline.py     # Demo pipeline, dossiers, feedback, analytics
+│   └── tests/                   # Backend behavior tests
+├── frontend/
+│   └── src/                     # React dashboard
+├── src/
+│   ├── product_inference/       # HPCL product catalog and recommendation engine
+│   ├── lead_scoring/            # Intent, freshness, size, proximity, routing
+│   ├── entity_resolution/       # Company normalization/profile builder
+│   └── web_intelligence/        # Source registry and provenance concepts
+├── data/
+│   ├── seed/                    # Demo dataset and product/source registries
+│   └── companies.json           # Demo company data
+├── docs/                        # Architecture, model card, deployment, governance docs
+├── scripts/
+│   └── seed_demo_data.py        # Regenerates 250 demo signals
+├── integration/                 # Prototype integration layer
+├── scrapper/                    # Legacy scraper prototype from hackathon phase
+├── docker-compose.yml
+└── pyproject.toml
 ```
 
 ## Quick Start
 
-### Backend
+### 1. Clone The Repository
+
+```bash
+git clone https://github.com/SnehaTanwar006/IIT_Hack_hpcl.git
+cd IIT_Hack_hpcl
+```
+
+### 2. Create Python Environment
 
 ```bash
 python -m venv .venv
+```
+
+On Windows:
+
+```bash
 .venv\Scripts\activate
+```
+
+On macOS/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+### 3. Install Backend Dependencies
+
+```bash
 pip install -e .[dev]
+```
+
+### 4. Regenerate Demo Dataset
+
+The repository already includes seed data, but this command regenerates the deterministic 250-row demo dataset.
+
+```bash
 python scripts/seed_demo_data.py
+```
+
+### 5. Run Backend API
+
+```bash
 uvicorn backend.app.main:app --reload
 ```
 
-Open the API documentation:
+Open the API docs:
 
 ```text
 http://localhost:8000/docs
 ```
 
-### Frontend
+Health check:
+
+```text
+http://localhost:8000/health
+```
+
+### 6. Run Frontend Dashboard
+
+Open a second terminal:
 
 ```bash
 cd frontend
@@ -116,43 +181,41 @@ Open the dashboard:
 http://localhost:5173
 ```
 
-### Docker Compose
+## Docker Setup
+
+The project includes a Docker Compose scaffold:
 
 ```bash
 docker compose up --build
 ```
 
-## API Overview
+Expected services:
 
-| Method | Endpoint | Purpose |
+- Backend API: `http://localhost:8000`
+- Frontend dashboard: `http://localhost:5173`
+
+## API Endpoints
+
+| Method | Endpoint | Description |
 | --- | --- | --- |
-| `GET` | `/health` | Service health check |
+| `GET` | `/health` | API health check |
 | `POST` | `/pipeline/run-demo` | Rebuild demo lead dossiers from seed data |
-| `GET` | `/leads` | List leads with optional status/priority filters |
-| `GET` | `/leads/{lead_id}` | Retrieve one lead dossier |
-| `PATCH` | `/leads/{lead_id}/status` | Update feedback status and note |
-| `GET` | `/analytics/summary` | Executive funnel/product/region/source metrics |
+| `GET` | `/leads` | List generated leads |
+| `GET` | `/leads/{lead_id}` | Get one complete lead dossier |
+| `PATCH` | `/leads/{lead_id}/status` | Update lead status and feedback note |
+| `GET` | `/analytics/summary` | Get funnel, priority, product, source, and region metrics |
 | `POST` | `/leads/{lead_id}/notifications/preview` | Generate sandbox alert payload |
 
-## Demo Walkthrough
-
-1. Start the backend and frontend.
-2. Open the dashboard and filter for Critical priority.
-3. Select a highway/tender lead.
-4. Review product recommendation, confidence, reason codes, source provenance, lead score, and assigned region.
-5. Preview a sandbox WhatsApp-style alert.
-6. Mark the lead Accepted or Converted.
-7. Review the analytics summary.
-
-## Example Lead Dossier Fields
+## Example Lead Dossier
 
 ```json
 {
   "lead_id": "LEAD-DEMO-0001",
+  "status": "NEW",
   "priority": "CRITICAL",
   "company": "National Highways Authority Demo Unit",
   "top_product": "Bitumen",
-  "score": "88/90",
+  "score": "74/90",
   "routing": "West / Ahmedabad",
   "next_best_action": "Call procurement contact and share Bitumen quotation pack within 24 hours."
 }
@@ -160,57 +223,94 @@ docker compose up --build
 
 ## Testing
 
+Run backend tests:
+
 ```bash
 pytest
 ```
 
-The tests cover:
+Current tests validate:
 
-- Product inference for tender signals.
-- Feedback/status update loop.
-- Sandbox notification policy behavior.
+- Product inference for bitumen tender signals.
+- Feedback/status update behavior.
+- Sandbox notification preview and policy note.
 
-## Data Governance
+## Demo Flow For Recruiters
 
-This project uses synthetic demo data by default. Production ingestion should:
+1. Start the backend API.
+2. Start the frontend dashboard.
+3. Open the lead queue and filter by priority.
+4. Select a critical tender lead.
+5. Review company card, source, product recommendation, confidence, score breakdown, and routing.
+6. Preview the sandbox alert.
+7. Mark the lead as accepted or converted.
+8. Review updated analytics.
+
+## Data Governance And Safety
+
+This prototype uses synthetic demo data by default. A production version should:
 
 - Prefer official APIs, RSS feeds, and public datasets.
-- Respect robots.txt, terms of service, source rate limits, and crawl frequency.
-- Store source URL, extraction timestamp, access method, and trust score for every fact.
+- Respect robots.txt, website terms, and rate limits.
+- Store source URL, timestamp, extraction method, and trust score for every extracted fact.
 - Avoid personal data unless lawful, necessary, and documented.
-- Use WhatsApp only with opted-in employee recipients and approved templates.
+- Use WhatsApp only with opt-in and approved business templates.
 
 ## Documentation
 
-- [Problem Summary](docs/problem-summary.md)
-- [Architecture](docs/architecture.md)
-- [Model Card](docs/model-card.md)
-- [Data Governance](docs/data-governance.md)
-- [Deployment](docs/deployment.md)
-- [Demo Script](docs/demo-script.md)
-- [Security](SECURITY.md)
-- [Contributing](CONTRIBUTING.md)
+Additional project documentation is available in the `docs/` folder:
 
-## What Was Improved From The Hackathon Prototype
+- `docs/problem-summary.md`
+- `docs/architecture.md`
+- `docs/model-card.md`
+- `docs/data-governance.md`
+- `docs/deployment.md`
+- `docs/demo-script.md`
 
-- Removed runtime artifacts and generated files from Git.
-- Added clean dependency management and `.gitignore`.
-- Added FastAPI endpoints around the existing intelligence modules.
-- Added a dashboard-first React interface.
-- Added deterministic labelled demo data.
-- Added tests, CI, Docker Compose, and documentation.
-- Replaced realistic-looking employee placeholders with clearly synthetic demo contacts.
-- Documented model limitations, governance, and deployment approach.
+## Current Status
 
-## Future Roadmap
+Implemented:
 
-- Add SQLAlchemy persistence with SQLite/PostgreSQL.
-- Move legacy scraper code into a clean `ingestion/` package.
-- Add scheduled ingestion workers and queue-based processing.
-- Add evaluation metrics for Top-1 product accuracy and Top-3 recall.
-- Add screenshots and a short demo GIF after deployment.
-- Add optional LLM extraction with a strict JSON schema and heuristic fallback.
+- FastAPI backend for lead dossiers.
+- React dashboard scaffold.
+- Product inference engine.
+- Lead scoring and routing.
+- Feedback status updates.
+- Sandbox notification previews.
+- Demo dataset generation.
+- Tests and Docker scaffold.
+- Model card, architecture, deployment, and governance docs.
 
-## Resume-Ready Summary
+Recommended cleanup:
 
-Built a full-stack B2B lead intelligence system for HPCL Direct Sales that ingests public buying signals, resolves companies, infers likely petroleum product demand, scores urgency, routes leads by territory, generates explainable dossiers, previews compliant sandbox alerts, and visualizes sales pipeline metrics through a React dashboard.
+- Remove committed `__pycache__` and `.pyc` files from Git.
+- Add a `.gitignore`.
+- Move legacy `scrapper/` code into a cleaner `ingestion/` package.
+- Add screenshots or a short GIF of the dashboard.
+- Add a GitHub Actions workflow for tests.
+
+## Suggested Repository Name
+
+A clearer, recruiter-friendly name would be:
+
+```text
+hpcl-b2b-lead-intelligence
+```
+
+Other good options:
+
+- `hpcl-sales-intelligence-agent`
+- `b2b-lead-intelligence-platform`
+- `industrial-lead-intelligence-agent`
+
+## Resume-Friendly Summary
+
+Built a full-stack B2B lead intelligence platform for HPCL Direct Sales that transforms public tender/news/company signals into explainable sales lead dossiers using product inference, lead scoring, territory routing, feedback capture, analytics, and a React dashboard.
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<p align="center">Made with ❤️ by <a href="https://github.com/SnehaTanwar006">Sneha Tanwar</a></p>
